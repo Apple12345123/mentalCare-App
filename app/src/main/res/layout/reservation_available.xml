@@ -4,13 +4,20 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오전"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="351dp"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="20sp">
+        android:paddingTop="10sp">
 
         <TextView
             android:id="@+id/oclock9"
@@ -58,13 +65,20 @@
             tools:layout_editor_absoluteY="490dp" />
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오후"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="351dp"
-        android:layout_height="99dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingTop="20sp"
+        android:paddingTop="10sp"
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="59dp">
 
@@ -157,6 +171,14 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/finishReservation"
+        android:layout_width="77dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#7A7979"
+        android:text="예약" />
 
 
 </LinearLayout>

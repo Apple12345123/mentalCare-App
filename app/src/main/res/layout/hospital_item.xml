@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="37dp" />
 
     <TextView
-        android:id="@+id/address"
+        android:id="@+id/hospitalLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="주소"
@@ -25,7 +25,7 @@
         tools:layout_editor_absoluteY="67dp" />
 
     <TextView
-        android:id="@+id/callNumber"
+        android:id="@+id/hospitalCall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="전화번호"
@@ -33,7 +33,7 @@
         tools:layout_editor_absoluteY="95dp" />
 
     <TextView
-        android:id="@+id/website"
+        android:id="@+id/hospitalWebsite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="홈페이지"
