@@ -3,6 +3,6 @@ package com.busani.mentalcareapp.hospital
 import java.sql.Time
 
 data class Hospital(val hospitalId: String, val hospitalName: String, val hospitalLocation: String, val hospitalWebsite: String, val hospitalCall: String,
-                    val monStartTime: Time, val monEndTime: Time, val tueStartTime: Time, val tueEndTime: Time, val wedStartTime: Time,
-                    val wedEndTime: Time, val thuStartTime: Time, val thuEndTime: Time, val friStartTime: Time, val friEndTime: Time,
-                    val satStartTime: Time, val satEndTime: Time, val sunStartTime: Time, val sunEndTime: Time, val sunHoliday: String, val lunchtime: Time, val holiday: String)
+                    val monStartTime: String, val monEndTime: String, val tueStartTime: String, val tueEndTime: String, val wedStartTime: String,
+                    val wedEndTime: String, val thuStartTime: String, val thuEndTime: String, val friStartTime: String, val friEndTime: String,
+                    val satStartTime: String, val satEndTime: String, val sunStartTime: String, val sunEndTime: String, val sunHoliday: String, val lunchtime: String, val holiday: String)

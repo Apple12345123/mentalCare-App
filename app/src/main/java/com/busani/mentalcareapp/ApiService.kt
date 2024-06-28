@@ -8,9 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService {
 
@@ -30,17 +28,20 @@ interface ApiService {
 
     // 병원 정보
     @POST("api/hospitals")
-    fun createHospital(@Body hospital: Hospital): Call<Hospital>
+    fun createHospital(@Body hospital: Hospital): Call<List<Hospital>>
 
-    @GET("api/hospitals/{id}")
+    @GET("api/hospitals")
+    fun getHospitals(): Call<List<Hospital>>
+
+    @GET("api/hospitals/{hospitalId}")
     fun getHospital(@Path("hospitalId") hospitalId: String): Call<Hospital>
 
     // 예약 정보
     @POST("/reservation")
-    fun createReservation(@Body reservation: Reservation): Call<Reservation>
+    fun createReservation(@Body reservation: Reservation): Call<List<Reservation>>
 
     @GET("/reservation/{id}")
-    fun getReservation(@Path("reservationId") reservationId: Long): Call<Reservation>
+    fun getReservation(@Path("reservationId") reservationId: Long): Call<List<Reservation>>
 
     @DELETE("/reservation/{id}")
     fun deleteReservation(@Path("reservationId") reservationId: Long): Call<Any>
