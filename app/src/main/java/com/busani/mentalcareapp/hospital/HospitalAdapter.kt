@@ -55,4 +55,8 @@ class HospitalAdapter(var hospitalList: List<Hospital>) :
         hospitalList = newList
         notifyDataSetChanged()
     }
+
+    fun abc(location: String ): List<Hospital> {
+        return hospitalList.filter { hospital: Hospital -> hospital.hospitalLocation.contains(location) }
+    }
 }

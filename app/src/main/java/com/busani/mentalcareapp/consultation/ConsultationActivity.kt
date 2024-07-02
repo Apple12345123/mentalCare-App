@@ -2,10 +2,11 @@ package com.busani.mentalcareapp.consultation
 
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.busani.mentalcareapp.RetrofitClient
 import com.busani.mentalcareapp.databinding.ActivityConsultationBinding
@@ -16,20 +17,32 @@ import retrofit2.Response
 private const val TAG = "ConsultationActivity"
 class ConsultationActivity : AppCompatActivity() {
     lateinit var binding: ActivityConsultationBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityConsultationBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
 
+        val reservationId = intent.getLongExtra("reservationId", 0)
+        val strHospitalName = intent.getStringExtra("hospitalName")
+        val strReservationYear = intent.getStringExtra("reservationYear")
+        val strReservationMonthDay = intent.getStringExtra("reservationMonthDay")
+        val strReservationTime = intent.getStringExtra("reservationTime")
         binding.run {
+
+            hospitalName.text = strHospitalName
+            textViewYear.text = "${strReservationYear}년"
+            textViewMonthDay.text = "${strReservationMonthDay}"
+            textViewTime.text = strReservationTime
+
             button.setOnClickListener {
                 // 사용자로부터 데이터를 입력받아 데이터 객체 생성
                 val contentConsul = contentConsul.text.toString()
                 val changeConsul = editText2.text.toString()
                 // val picture = picture.
 
-                val consultation = Consultation(1, contentConsul, changeConsul, null)
+                val consultation = Consultation(reservationId, null, contentConsul, changeConsul, null)
                 RetrofitClient.api.createConsultation(consultation).enqueue(object : Callback<Consultation> {
                     override fun onResponse(call: Call<Consultation>, response: Response<Consultation>) {
                         if (response.isSuccessful) {
@@ -51,6 +64,9 @@ class ConsultationActivity : AppCompatActivity() {
                     }
 
                 })
+
+
+
             }
         }
 

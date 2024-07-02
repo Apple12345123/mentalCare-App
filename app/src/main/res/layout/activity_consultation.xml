@@ -33,10 +33,11 @@
     <ImageView
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/contentConsul"
         app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -70,25 +71,25 @@
             tools:layout_editor_absoluteY="104dp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewYear"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="YYYY년"
+            android:layout_height="match_parent"
             android:layout_marginRight="5dp"
+            android:text="YYYY년"
             tools:layout_editor_absoluteX="102dp"
             tools:layout_editor_absoluteY="104dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewMonthDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MM월 dd일"
             android:layout_marginRight="5dp"
+            android:text="MM월 dd일"
             tools:layout_editor_absoluteX="158dp"
             tools:layout_editor_absoluteY="104dp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00"

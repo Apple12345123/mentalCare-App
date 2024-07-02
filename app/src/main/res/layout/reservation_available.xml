@@ -174,11 +174,13 @@
 
     <Button
         android:id="@+id/finishReservation"
-        android:layout_width="77dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="#7A7979"
-        android:text="예약" />
+        android:text="예약"
+        android:textColor="@color/white" />
 
 
 </LinearLayout>

@@ -1,10 +1,13 @@
 package com.busani.mentalcareapp.reservation
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.busani.mentalcareapp.R
 import com.busani.mentalcareapp.RetrofitClient
 import com.busani.mentalcareapp.databinding.ActivityHospitalBinding
@@ -14,6 +17,8 @@ import com.busani.mentalcareapp.hospital.Hospital
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.Month
+import java.time.Year
 import java.util.Calendar
 import java.util.Optional.empty
 
@@ -21,13 +26,19 @@ private const val TAG = "ReservationActivity"
 class ReservationActivity : AppCompatActivity() {
     lateinit var binding: ActivityReservationBinding
     lateinit var hospital: Hospital
+    var hospitalId: String = ""
+    var selectedYear: Int = -1
+    var selectedMonth: Int = -1
+    var selectedDayOfMonth: Int = -1
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityReservationBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val hospitalId = intent.getStringExtra("hospitalId")!!
+        hospitalId = intent.getStringExtra("hospitalId")!!
 
         Log.d(TAG, "onCreate: ${hospitalId}")
         val api = RetrofitClient.api
@@ -69,6 +80,10 @@ class ReservationActivity : AppCompatActivity() {
                         val calendar = Calendar.getInstance().apply {
                             set(year, month, dayOfMonth)
                         }
+
+                        selectedYear = year
+                        selectedMonth = month
+                        selectedDayOfMonth = dayOfMonth
 
                         // 선택된 날짜의 요일을 가져옵니다.
                         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)

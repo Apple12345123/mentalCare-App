@@ -8,6 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/consultationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -44,7 +45,7 @@
             tools:layout_editor_absoluteY="104dp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="YYYY년"
@@ -52,17 +53,17 @@
             tools:layout_editor_absoluteX="102dp"
             tools:layout_editor_absoluteY="104dp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MM월 dd일"
-            android:layout_marginRight="5dp"
-            tools:layout_editor_absoluteX="158dp"
-            tools:layout_editor_absoluteY="104dp" />
+            <TextView
+                android:id="@+id/textViewMonthDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="MM월 dd일"
+                tools:layout_editor_absoluteX="158dp"
+                tools:layout_editor_absoluteY="104dp" />
 
-        <TextView
-            android:id="@+id/textView4"
+            <TextView
+            android:id="@+id/textViewTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00"
@@ -75,12 +76,12 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/deleteReservation"
+        android:id="@+id/deleteReservationButton"
         android:layout_width="30dp"
         android:layout_height="34dp"
-        android:layout_marginLeft="120dp"
-        android:src="@drawable/x"
-        android:layout_marginTop="13dp"/>
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/x" />
 
 
 </LinearLayout>

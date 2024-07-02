@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
+        android:id="@+id/xx"
         android:layout_width="28dp"
         android:layout_height="21dp"
         android:layout_marginTop="16dp"
@@ -21,7 +22,7 @@
         android:layout_height="22dp"
         android:layout_marginBottom="7dp"
         android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@id/textViewConsultationChange"
         app:layout_constraintEnd_toStartOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -97,8 +98,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
+    <TextView
+        android:id="@+id/textViewConsultationContent"
         android:layout_width="385dp"
         android:layout_height="156dp"
         android:layout_marginTop="8dp"
@@ -125,13 +126,13 @@
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@id/textViewConsultationContent"
+        app:layout_constraintEnd_toStartOf="@id/textView7"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editText2"
+    <TextView
+        android:id="@+id/textViewConsultationChange"
         android:layout_width="389dp"
         android:layout_height="142dp"
         android:layout_marginTop="8dp"

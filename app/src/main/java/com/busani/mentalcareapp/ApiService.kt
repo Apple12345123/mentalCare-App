@@ -16,10 +16,10 @@ interface ApiService {
     @POST("/consultation")
     fun createConsultation(@Body consultation: Consultation): Call<Consultation>
 
-    @GET("/consultation/{id}")
+    @GET("/consultation/{consultationId}")
     fun getConsultation(@Path("consultationId") consultationId: Long): Call<Consultation>
 
-    @DELETE("/consultation/{id}")
+    @DELETE("/consultation/{consultationId}")
     fun deleteConsultation(@Path("consultationId") consultationId: Long): Call<Any>
 
     /* 수정하기
@@ -38,13 +38,15 @@ interface ApiService {
 
     // 예약 정보
     @POST("/reservation")
-    fun createReservation(@Body reservation: Reservation): Call<List<Reservation>>
+    fun createReservation(@Body reservation: Reservation): Call<Reservation>
 
-    @GET("/reservation/{id}")
-    fun getReservation(@Path("reservationId") reservationId: Long): Call<List<Reservation>>
+    @GET("/reservation/{reservationId}")
+    fun getReservation(@Path("reservationId") reservationId: Long): Call<Reservation>
+    @GET("/reservation/user/{userId}")
+    fun getReservationByUserId(@Path("userId") userId: String): Call<List<Reservation>>
 
-    @DELETE("/reservation/{id}")
-    fun deleteReservation(@Path("reservationId") reservationId: Long): Call<Any>
+    @DELETE("/reservation/{reservationId}")
+    fun deleteReservation(@Path("reservationId") reservationId: Long): Call<String>
 
 
 }

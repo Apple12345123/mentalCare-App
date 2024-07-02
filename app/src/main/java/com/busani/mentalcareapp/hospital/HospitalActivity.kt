@@ -1,15 +1,18 @@
 package com.busani.mentalcareapp.hospital
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.busani.mentalcareapp.RetrofitClient
 import com.busani.mentalcareapp.databinding.ActivityHospitalBinding
+import com.busani.mentalcareapp.reservation.MyReservationActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +21,7 @@ class HospitalActivity : AppCompatActivity() {
     lateinit var binding: ActivityHospitalBinding
     lateinit var hospitalList: List<Hospital>
     lateinit var hospitalAdapter: HospitalAdapter
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityHospitalBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -35,7 +39,7 @@ class HospitalActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
 
-        binding.editTextName.addTextChangedListener(object : TextWatcher {
+        binding.editTextHospitalSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

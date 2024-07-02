@@ -37,7 +37,7 @@
             android:name=".hospital.LocalCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".hospital.MyReservationActivity"
+            android:name=".reservation.MyReservationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.busani.mentalcareapp.consultation
+package com.busani.mentalcareapp.reservation
 
 import android.content.Intent
 import android.os.Build
@@ -8,58 +8,74 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.busani.mentalcareapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.busani.mentalcareapp.ApiService
 import com.busani.mentalcareapp.RetrofitClient
-import com.busani.mentalcareapp.databinding.MyConsultationBinding
+import com.busani.mentalcareapp.consultation.Consultation
+import com.busani.mentalcareapp.consultation.ConsultationActivity
+import com.busani.mentalcareapp.databinding.MyReservationBinding
+import com.busani.mentalcareapp.databinding.MyReservationItemBinding
 import com.busani.mentalcareapp.hospital.QuestionActivity
-import com.busani.mentalcareapp.reservation.MyReservationActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val TAG = "MyConsultationActivity"
-class MyConsultationActivity : AppCompatActivity() {
-    lateinit var binding: MyConsultationBinding
+private const val TAG = "MyReservationActivity"
+class MyReservationActivity : AppCompatActivity() {
+    lateinit var binding: MyReservationBinding
+    lateinit var binding1: MyReservationItemBinding
+    lateinit var adapter: MyReservationAdapter
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= MyConsultationBinding.inflate(layoutInflater)
+        binding= MyReservationBinding.inflate(layoutInflater)
+        binding1= MyReservationItemBinding.inflate(layoutInflater, binding.root, false)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val id = intent.getLongExtra("consultationId", 0)
+        adapter = MyReservationAdapter(listOf())
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@MyReservationActivity)
+        binding.recyclerView.adapter = adapter
+
+
+
+        val userId = "test_id"
+        val reservationId = intent.getLongExtra("reservationId", 0)
         val api = RetrofitClient.api
-        api.getConsultation(id).enqueue(object : Callback<Consultation> {
-            override fun onResponse(call: Call<Consultation>, response: Response<Consultation>) {
+        Log.d(TAG, "onCreate: reservationId : ${reservationId}")
+
+        getReservationByUserIdApi(api, userId)
+
+    }
+
+
+
+    fun getReservationByUserIdApi(api: ApiService, userId: String) {
+        api.getReservationByUserId(userId).enqueue(object : Callback<List<Reservation>> {
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onResponse(
+                call: Call<List<Reservation>>,
+                response: Response<List<Reservation>>
+            ) {
                 if (response.isSuccessful) {
                     // 네트워킹에 성공할 경우 데이터를 가져옴 (엘비스 연산자로 null 처리)
-
+                    val posts = response.body()
                     Log.d(TAG, "onResponse: ${response.body()}")
-                    val consultationDetails = response.body()?.consultationDetails
-                    val myChange = response.body()?.myChange
-                    binding.textViewConsultationContent.text = consultationDetails
-                    binding.textViewConsultationChange.text = myChange
+                    val reservations = response.body() ?: emptyList<Reservation>()
+                    adapter.updateList(reservations)
                 } else {
                     handleServerError(response)  // 오류 처리 함수 호출
                 }
             }
 
-            override fun onFailure(call: Call<Consultation>, t: Throwable) {
+            override fun onFailure(call: Call<List<Reservation>>, t: Throwable) {
                 handleNetworkError(t)
                 // 실패 처리
             }
         })
-
-        binding.xx.setOnClickListener{
-            val returnReser = Intent(this@MyConsultationActivity, MyReservationActivity::class.java)
-            startActivity(returnReser)
-        }
-
-
-
     }
+
     // 레트로핏 오류 처리
     // 응답은 하였으나 성공(200번대)이 아닌 경우 핸들러
     private fun handleServerError(response: Response<*>) {
@@ -79,3 +95,4 @@ class MyConsultationActivity : AppCompatActivity() {
     }
 
 }
+
