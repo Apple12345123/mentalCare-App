@@ -40,9 +40,11 @@ class HospitalActivity : AppCompatActivity() {
 
 
         binding.editTextHospitalSearch.addTextChangedListener(object : TextWatcher {
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                println("text Changed");
                 filter(s.toString())
             }
 
@@ -78,6 +80,7 @@ class HospitalActivity : AppCompatActivity() {
                     // 네트워킹에 성공할 경우 데이터를 가져옴 (엘비스 연산자로 null 처리)
                     val posts = response.body() ?: emptyList()
                     // 리사이클러뷰 어댑터 매개변수를 통해 데이터 전달 + 어댑터 연결
+                    hospitalList = posts;
                     hospitalAdapter = HospitalAdapter(posts)
                     binding.recyclerView.adapter = hospitalAdapter
                 } else {
@@ -91,16 +94,38 @@ class HospitalActivity : AppCompatActivity() {
             }
         })
 
-
-
+        // 병원 검색 기능
+        binding.run {
+            searchButton.setOnClickListener {
+                println("search btn");
+                var searchText =  editTextHospitalSearch.text;
+                filter(searchText.toString());
+            }
+        }
     }
+
     private fun filter(text: String) {
-        val filteredList = hospitalList.filter {
+        Log.d("list size", hospitalList.size.toString());
+        val filteredNameList = hospitalList.filter {
             it.hospitalName.contains(text, ignoreCase = true)
         }
 
-        hospitalAdapter.updateList(filteredList)
+        val filteredList = hospitalList.filter {
+            it.hospitalLocation.contains(text, ignoreCase = true)
+        }
+
+        filteredNameList.containsAll(filteredList);
+
+        if(filteredNameList.size == 0){
+            hospitalAdapter.updateList(hospitalList)
+            return;
+        }
+        
+        Log.d("hospitalList", text);
+        Log.d("hospitalList", filteredList.toString());
+        hospitalAdapter.updateList(filteredNameList)
     }
+
     // 레트로핏 오류 처리
     // 응답은 하였으나 성공(200번대)이 아닌 경우 핸들러
     private fun handleServerError(response: Response<*>) {

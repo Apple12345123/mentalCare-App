@@ -51,6 +51,8 @@ class HospitalAdapter(var hospitalList: List<Hospital>) :
         }*/
     }
 
+
+
     fun updateList(newList: List<Hospital>) {
         hospitalList = newList
         notifyDataSetChanged()
