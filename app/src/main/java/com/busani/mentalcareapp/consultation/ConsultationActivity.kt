@@ -29,6 +29,7 @@ class ConsultationActivity : AppCompatActivity() {
         val strReservationYear = intent.getStringExtra("reservationYear")
         val strReservationMonthDay = intent.getStringExtra("reservationMonthDay")
         val strReservationTime = intent.getStringExtra("reservationTime")
+
         binding.run {
 
             hospitalName.text = strHospitalName
@@ -50,6 +51,11 @@ class ConsultationActivity : AppCompatActivity() {
                             val id = response.body()?.consultationId
                             val intent = Intent(this@ConsultationActivity, MyConsultationActivity::class.java)
                             intent.putExtra("consultationId", id)
+                            intent.putExtra("reservationId", reservationId)
+                            intent.putExtra("hospitalName", strHospitalName)
+                            intent.putExtra("reservationYear", strReservationYear)
+                            intent.putExtra("reservationMonthDay", strReservationMonthDay)
+                            intent.putExtra("reservationTime",strReservationTime)
                             startActivity(intent)
 
                             finish()  // 새 글 작성 성공시, Activity 종료, 이전으로 돌아감

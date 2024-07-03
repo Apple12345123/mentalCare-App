@@ -43,8 +43,6 @@ class MyReservationAdapter(var reservations: List<Reservation>) :
                 val context = it.context
                 getReservationByIdApi(RetrofitClient.api, reservation.reservationId!!, context)
 
-
-
             }
 
             binding.deleteReservationButton.setOnClickListener {
@@ -120,11 +118,17 @@ class MyReservationAdapter(var reservations: List<Reservation>) :
                     val reservation = response.body()!!
                     val consultationId = reservation.consultationId
 
+
                     // 상담내역이 존재하면
                     if(consultationId != null) {
                         // 입력된 상담내역으로 이동
                         val intent = Intent(context, MyConsultationActivity::class.java)
                         intent.putExtra("consultationId", consultationId)
+                        intent.putExtra("reservationId", reservation.reservationId)
+                        intent.putExtra("hospitalName", reservation.hospitalName)
+                        intent.putExtra("reservationYear", reservation.reservationDate.year.toString())
+                        intent.putExtra("reservationMonthDay", "${reservation.reservationDate.month} ${reservation.reservationDate.dayOfMonth}일 ")
+                        intent.putExtra("reservationTime", reservation.reservationTime.toString())
                         context.startActivity(intent)
                     } else {
                         // 존재하지 않으면 상담내역 입력으로 이동
@@ -134,10 +138,10 @@ class MyReservationAdapter(var reservations: List<Reservation>) :
                         intent.putExtra("reservationYear", reservation.reservationDate.year.toString())
                         intent.putExtra("reservationMonthDay", "${reservation.reservationDate.month} ${reservation.reservationDate.dayOfMonth}일 ")
                         intent.putExtra("reservationTime", reservation.reservationTime.toString())
-
                         context.startActivity(intent)
-
                     }
+
+
 
                 } else {
                     handleServerError(response)  // 오류 처리 함수 호출
