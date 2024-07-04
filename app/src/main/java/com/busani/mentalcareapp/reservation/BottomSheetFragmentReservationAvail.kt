@@ -66,7 +66,8 @@ class BottomSheetFragmentReservationAvail : BottomSheetDialogFragment() {
                 val reservationDate = LocalDate.of(year, month, dayOfMonth )
                 val reservationTime = LocalTime.of(time,0)
 
-                val reservation = Reservation(null, "test_id", reservationDate, reservationTime,  hospitalId, null, null)
+                val userId = "a" // 하드코딩 유저 아이디
+                val reservation = Reservation(null, userId, reservationDate, reservationTime,  hospitalId, null, null)
                 Log.d(TAG, "onViewCreated: ${reservation}")
                 // 1. 레트로핏 네트워크 요청
                 RetrofitClient.api.createReservation(reservation).enqueue(object :

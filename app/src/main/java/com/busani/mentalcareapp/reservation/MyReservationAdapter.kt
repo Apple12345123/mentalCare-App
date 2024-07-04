@@ -64,7 +64,7 @@ class MyReservationAdapter(var reservations: List<Reservation>) :
                                 binding.root.context as MyReservationActivity
                             myReservationActivity.getReservationByUserIdApi(
                                 RetrofitClient.api,
-                                "test_id"
+                                "a"       // 하드코딩 유저 아이디
                             )
 
                         } else {

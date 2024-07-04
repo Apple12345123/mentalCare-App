@@ -94,14 +94,14 @@ class HospitalActivity : AppCompatActivity() {
             }
         })
 
-        // 병원 검색 기능
+        /*// 병원 검색 기능
         binding.run {
             searchButton.setOnClickListener {
                 println("search btn");
                 var searchText =  editTextHospitalSearch.text;
                 filter(searchText.toString());
             }
-        }
+        }*/
     }
 
     private fun filter(text: String) {

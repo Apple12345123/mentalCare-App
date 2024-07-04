@@ -40,7 +40,7 @@ class MyReservationActivity : AppCompatActivity() {
 
 
 
-        val userId = "test_id"
+        val userId = "a"  // 하드코딩 유저 아이디
         val reservationId = intent.getLongExtra("reservationId", 0)
         val api = RetrofitClient.api
         Log.d(TAG, "onCreate: reservationId : ${reservationId}")
