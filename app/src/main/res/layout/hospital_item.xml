@@ -40,6 +40,13 @@
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="122dp" />
 
+    <View
+        android:id="@+id/line_2"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#B0B0B0"
+        />
 
 
 </LinearLayout>
